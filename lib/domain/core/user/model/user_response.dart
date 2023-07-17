@@ -3,7 +3,7 @@ class UserResponse {
   int? perPage;
   int? total;
   int? totalPages;
-  List<Data>? data;
+  List<Data1>? data;
   Support? support;
 
   UserResponse(
@@ -20,9 +20,9 @@ class UserResponse {
     total = json['total'];
     totalPages = json['total_pages'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <Data1>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new Data1.fromJson(v));
       });
     }
     support =
@@ -45,16 +45,16 @@ class UserResponse {
   }
 }
 
-class Data {
+class Data1 {
   int? id;
   String? email;
   String? firstName;
   String? lastName;
   String? avatar;
 
-  Data({this.id, this.email, this.firstName, this.lastName, this.avatar});
+  Data1({this.id, this.email, this.firstName, this.lastName, this.avatar});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Data1.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     email = json['email'];
     firstName = json['first_name'];

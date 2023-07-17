@@ -8,10 +8,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late LoginResponse loginResponse;
+  @override
+  void initState() {
+    final data = GetStorage().read(contants.USER_LOCAL_KEY);
+    loginResponse = LoginResponse.fromJson(jsonDecode(data));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home")),
+      appBar: AppBar(title: Text(loginResponse.token.toString())),
       body: BlocProvider(
         create: (context) =>
             ProfilebBloc()..add(const ProfilebEvent.getAllUserData()),
@@ -44,7 +52,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container homePageContent(List<Data>? data) {
+  Container homePageContent(List<Data1>? data) {
     return Container(
       child: (data!.length < 1)
           ? Center(

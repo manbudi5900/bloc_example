@@ -10,27 +10,35 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocProvider(
-        create: (context) => AuthCubit(),
-        child: BlocConsumer<AuthCubit, AuthState>(
+        create: (context) => AuthbBloc(),
+        child: BlocConsumer<AuthbBloc, AuthbState>(
           listener: (context, state) {
-            if (state is AuthError) {
-              showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                      title: const Text("Error"),
-                      content: Text(state.message)));
-              print(state.message);
-            } else if (state is AuthLoading) {
-              print("Loading");
-            } else if (state is AuthSuccess) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const HomePage()));
-            }
+            state.maybeMap(
+                orElse: () {},
+                isLoading: (value) {
+                  print("Loading1..");
+                },
+                initial: (value) {
+                  print("Loading111..");
+                },
+                isSuccess: (value) {
+                  print(value);
+                  context
+                      .read<AuthbBloc>()
+                      .add(AuthbEvent.saveUserData(value.userResponse));
+                },
+                isSuccessSaveDataUser: (value) {
+                  print("value");
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
+                });
+            print(state);
           },
           builder: (context, state) {
             return ListView(
@@ -102,21 +110,38 @@ class _SignInPageState extends State<SignInPage> {
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                           color: Color.fromARGB(255, 61, 58, 255)),
                       child: TextButton(
-                        child: (state is AuthLoading)
-                            ? const CircularProgressIndicator()
-                            : const Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18),
-                              ),
+                        child: state.maybeMap(
+                            orElse: () => const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ),
+                            isLoading: ((value) =>
+                                const CircularProgressIndicator()),
+                            isSuccess: (value) => const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ),
+                            isError: ((value) => const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18),
+                                ))),
                         onPressed: () {
                           print("object");
                           final requestData = LoginRequest(
                               email: "eve.holt@reqres.in",
                               password: "cityslicka");
-                          context.read<AuthCubit>().signIn(requestData);
+                          context
+                              .read<AuthbBloc>()
+                              .add(AuthbEvent.signIn(requestData));
                         },
                       ),
                     )),
