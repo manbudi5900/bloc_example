@@ -14,3 +14,4 @@ import 'package:belajar/utils/constants.dart' as contants;
 part 'sign_in/sign_in_page.dart';
 
 part 'home/home_page.dart';
+part 'splash_screen/splash_screen_page.dart';

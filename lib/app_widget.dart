@@ -1,3 +1,4 @@
+import 'package:belajar/presentation/home2/home2_screen_page.dart';
 import 'package:belajar/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInPage(),
+      home: const Home2ScreenPage(),
     );
   }
 }

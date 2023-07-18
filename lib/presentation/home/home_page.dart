@@ -19,7 +19,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(loginResponse.token.toString())),
+      appBar: AppBar(
+        title: Text(loginResponse.token.toString()),
+        actions: [
+          IconButton(
+              onPressed: () {
+                GetStorage().erase();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignInPage()));
+              },
+              icon: const Icon(Icons.exit_to_app))
+        ],
+      ),
       body: BlocProvider(
         create: (context) =>
             ProfilebBloc()..add(const ProfilebEvent.getAllUserData()),

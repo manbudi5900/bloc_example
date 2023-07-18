@@ -21,6 +21,7 @@ mixin _$AuthbEvent {
     required TResult Function() started,
     required TResult Function(LoginRequest requestData) signIn,
     required TResult Function(LoginResponse responseData) saveUserData,
+    required TResult Function() loadUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AuthbEvent {
     TResult? Function()? started,
     TResult? Function(LoginRequest requestData)? signIn,
     TResult? Function(LoginResponse responseData)? saveUserData,
+    TResult? Function()? loadUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AuthbEvent {
     TResult Function()? started,
     TResult Function(LoginRequest requestData)? signIn,
     TResult Function(LoginResponse responseData)? saveUserData,
+    TResult Function()? loadUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AuthbEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_LoadUserData value) loadUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AuthbEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_LoadUserData value)? loadUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AuthbEvent {
     TResult Function(_Started value)? started,
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_LoadUserData value)? loadUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(LoginRequest requestData) signIn,
     required TResult Function(LoginResponse responseData) saveUserData,
+    required TResult Function() loadUserData,
   }) {
     return started();
   }
@@ -130,6 +137,7 @@ class _$_Started implements _Started {
     TResult? Function()? started,
     TResult? Function(LoginRequest requestData)? signIn,
     TResult? Function(LoginResponse responseData)? saveUserData,
+    TResult? Function()? loadUserData,
   }) {
     return started?.call();
   }
@@ -140,6 +148,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(LoginRequest requestData)? signIn,
     TResult Function(LoginResponse responseData)? saveUserData,
+    TResult Function()? loadUserData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -154,6 +163,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_LoadUserData value) loadUserData,
   }) {
     return started(this);
   }
@@ -164,6 +174,7 @@ class _$_Started implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_LoadUserData value)? loadUserData,
   }) {
     return started?.call(this);
   }
@@ -174,6 +185,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_LoadUserData value)? loadUserData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -253,6 +265,7 @@ class _$_SignIn implements _SignIn {
     required TResult Function() started,
     required TResult Function(LoginRequest requestData) signIn,
     required TResult Function(LoginResponse responseData) saveUserData,
+    required TResult Function() loadUserData,
   }) {
     return signIn(requestData);
   }
@@ -263,6 +276,7 @@ class _$_SignIn implements _SignIn {
     TResult? Function()? started,
     TResult? Function(LoginRequest requestData)? signIn,
     TResult? Function(LoginResponse responseData)? saveUserData,
+    TResult? Function()? loadUserData,
   }) {
     return signIn?.call(requestData);
   }
@@ -273,6 +287,7 @@ class _$_SignIn implements _SignIn {
     TResult Function()? started,
     TResult Function(LoginRequest requestData)? signIn,
     TResult Function(LoginResponse responseData)? saveUserData,
+    TResult Function()? loadUserData,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -287,6 +302,7 @@ class _$_SignIn implements _SignIn {
     required TResult Function(_Started value) started,
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_LoadUserData value) loadUserData,
   }) {
     return signIn(this);
   }
@@ -297,6 +313,7 @@ class _$_SignIn implements _SignIn {
     TResult? Function(_Started value)? started,
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_LoadUserData value)? loadUserData,
   }) {
     return signIn?.call(this);
   }
@@ -307,6 +324,7 @@ class _$_SignIn implements _SignIn {
     TResult Function(_Started value)? started,
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_LoadUserData value)? loadUserData,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -393,6 +411,7 @@ class _$_SaveUserData implements _SaveUserData {
     required TResult Function() started,
     required TResult Function(LoginRequest requestData) signIn,
     required TResult Function(LoginResponse responseData) saveUserData,
+    required TResult Function() loadUserData,
   }) {
     return saveUserData(responseData);
   }
@@ -403,6 +422,7 @@ class _$_SaveUserData implements _SaveUserData {
     TResult? Function()? started,
     TResult? Function(LoginRequest requestData)? signIn,
     TResult? Function(LoginResponse responseData)? saveUserData,
+    TResult? Function()? loadUserData,
   }) {
     return saveUserData?.call(responseData);
   }
@@ -413,6 +433,7 @@ class _$_SaveUserData implements _SaveUserData {
     TResult Function()? started,
     TResult Function(LoginRequest requestData)? signIn,
     TResult Function(LoginResponse responseData)? saveUserData,
+    TResult Function()? loadUserData,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
@@ -427,6 +448,7 @@ class _$_SaveUserData implements _SaveUserData {
     required TResult Function(_Started value) started,
     required TResult Function(_SignIn value) signIn,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_LoadUserData value) loadUserData,
   }) {
     return saveUserData(this);
   }
@@ -437,6 +459,7 @@ class _$_SaveUserData implements _SaveUserData {
     TResult? Function(_Started value)? started,
     TResult? Function(_SignIn value)? signIn,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_LoadUserData value)? loadUserData,
   }) {
     return saveUserData?.call(this);
   }
@@ -447,6 +470,7 @@ class _$_SaveUserData implements _SaveUserData {
     TResult Function(_Started value)? started,
     TResult Function(_SignIn value)? signIn,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_LoadUserData value)? loadUserData,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
@@ -464,6 +488,120 @@ abstract class _SaveUserData implements AuthbEvent {
   @JsonKey(ignore: true)
   _$$_SaveUserDataCopyWith<_$_SaveUserData> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LoadUserDataCopyWith<$Res> {
+  factory _$$_LoadUserDataCopyWith(
+          _$_LoadUserData value, $Res Function(_$_LoadUserData) then) =
+      __$$_LoadUserDataCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadUserDataCopyWithImpl<$Res>
+    extends _$AuthbEventCopyWithImpl<$Res, _$_LoadUserData>
+    implements _$$_LoadUserDataCopyWith<$Res> {
+  __$$_LoadUserDataCopyWithImpl(
+      _$_LoadUserData _value, $Res Function(_$_LoadUserData) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_LoadUserData implements _LoadUserData {
+  const _$_LoadUserData();
+
+  @override
+  String toString() {
+    return 'AuthbEvent.loadUserData()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LoadUserData);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(LoginRequest requestData) signIn,
+    required TResult Function(LoginResponse responseData) saveUserData,
+    required TResult Function() loadUserData,
+  }) {
+    return loadUserData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(LoginRequest requestData)? signIn,
+    TResult? Function(LoginResponse responseData)? saveUserData,
+    TResult? Function()? loadUserData,
+  }) {
+    return loadUserData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(LoginRequest requestData)? signIn,
+    TResult Function(LoginResponse responseData)? saveUserData,
+    TResult Function()? loadUserData,
+    required TResult orElse(),
+  }) {
+    if (loadUserData != null) {
+      return loadUserData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SignIn value) signIn,
+    required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_LoadUserData value) loadUserData,
+  }) {
+    return loadUserData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SignIn value)? signIn,
+    TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_LoadUserData value)? loadUserData,
+  }) {
+    return loadUserData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SignIn value)? signIn,
+    TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_LoadUserData value)? loadUserData,
+    required TResult orElse(),
+  }) {
+    if (loadUserData != null) {
+      return loadUserData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadUserData implements AuthbEvent {
+  const factory _LoadUserData() = _$_LoadUserData;
 }
 
 /// @nodoc

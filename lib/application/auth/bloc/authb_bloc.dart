@@ -18,28 +18,40 @@ class AuthbBloc extends Bloc<AuthbEvent, AuthbState> {
   AuthbBloc() : super(_Initial()) {
     on<AuthbEvent>((event, emit) async {
       await event.map(
-          started: (value) async* {},
-          signIn: (value) async {
-            print("ini");
-            emit(const AuthbState.isLoading());
-            // Get data from Api
-            final result =
-                await authRepository.signIn(loginRequest: value.requestData);
+        started: (value) async* {},
+        signIn: (value) async {
+          print("ini");
+          emit(const AuthbState.isLoading());
+          // Get data from Api
+          final result =
+              await authRepository.signIn(loginRequest: value.requestData);
 
-            result.fold((l) => emit(AuthbState.isError(l)),
-                (r) => emit(AuthbState.isSuccess(r)));
-          },
-          saveUserData: ((value) async {
-            print("tautau");
-            emit(const AuthbState.isLoading());
-            try {
-              await GetStorage().write(constants.USER_LOCAL_KEY,
-                  jsonEncode(value.responseData.toJson()));
-              emit(AuthbState.isSuccessSaveDataUser(value.responseData));
-            } catch (e) {
-              emit(AuthbState.isError(e.toString()));
-            }
-          }));
+          result.fold((l) => emit(AuthbState.isError(l)),
+              (r) => emit(AuthbState.isSuccess(r)));
+        },
+        saveUserData: (value) async {
+          print("tautau");
+          emit(const AuthbState.isLoading());
+          try {
+            await GetStorage().write(constants.USER_LOCAL_KEY,
+                jsonEncode(value.responseData.toJson()));
+            emit(AuthbState.isSuccessSaveDataUser(value.responseData));
+          } catch (e) {
+            emit(AuthbState.isError(e.toString()));
+          }
+        },
+        loadUserData: (value) async {
+          emit(const AuthbState.isLoading());
+          try {
+            final data = await GetStorage().read(constants.USER_LOCAL_KEY);
+            print(data);
+            final loginRespone = LoginResponse.fromJson(jsonDecode(data));
+            emit(AuthbState.isSuccessSaveDataUser(loginRespone));
+          } catch (e) {
+            emit(AuthbState.isError(e.toString()));
+          }
+        },
+      );
     });
   }
 }

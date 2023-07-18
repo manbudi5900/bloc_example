@@ -6,4 +6,5 @@ class AuthbEvent with _$AuthbEvent {
   const factory AuthbEvent.signIn(LoginRequest requestData) = _SignIn;
   const factory AuthbEvent.saveUserData(LoginResponse responseData) =
       _SaveUserData;
+  const factory AuthbEvent.loadUserData() = _LoadUserData;
 }
