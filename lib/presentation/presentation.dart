@@ -8,6 +8,7 @@ import 'package:belajar/application/profile/bloc/profileb_bloc.dart';
 import 'package:belajar/domain/auth/model/login_request.dart';
 import 'package:belajar/domain/auth/model/login_response.dart';
 import 'package:belajar/domain/core/user/model/user_response.dart';
+import 'package:belajar/domain/location/location_req.dart';
 import 'package:belajar/route/router.gr.dart';
 import 'package:belajar/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:belajar/utils/constants.dart' as contants;
 import 'package:image_picker/image_picker.dart';
+import 'package:quickalert/quickalert.dart';
 
 part 'sign_in/sign_in_page.dart';
 
