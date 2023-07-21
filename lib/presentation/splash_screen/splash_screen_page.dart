@@ -17,15 +17,12 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           listener: (context, state) {
             state.maybeMap(
                 orElse: () {},
-                isLoading: (value) {
-                  print("Loading22..");
-                },
+                isLoading: (value) {},
                 isError: (value) {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const SignInPage()));
                 },
                 isSuccessSaveDataUser: (value) {
-                  print(state);
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const HomePage()));
                 });

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:belajar/domain/auth/model/login_request.dart';
@@ -15,43 +16,48 @@ part 'authb_bloc.freezed.dart';
 class AuthbBloc extends Bloc<AuthbEvent, AuthbState> {
   AuthRepository authRepository = AuthRepository();
 
-  AuthbBloc() : super(_Initial()) {
-    on<AuthbEvent>((event, emit) async {
-      await event.map(
-        started: (value) async* {},
-        signIn: (value) async {
-          print("ini");
-          emit(const AuthbState.isLoading());
-          // Get data from Api
-          final result =
-              await authRepository.signIn(loginRequest: value.requestData);
+  AuthbBloc() : super(const _Initial()) {
+    on<AuthbEvent>(userFunction);
+  }
 
-          result.fold((l) => emit(AuthbState.isError(l)),
-              (r) => emit(AuthbState.isSuccess(r)));
-        },
-        saveUserData: (value) async {
-          print("tautau");
-          emit(const AuthbState.isLoading());
-          try {
-            await GetStorage().write(constants.USER_LOCAL_KEY,
-                jsonEncode(value.responseData.toJson()));
-            emit(AuthbState.isSuccessSaveDataUser(value.responseData));
-          } catch (e) {
-            emit(AuthbState.isError(e.toString()));
-          }
-        },
-        loadUserData: (value) async {
-          emit(const AuthbState.isLoading());
-          try {
-            final data = await GetStorage().read(constants.USER_LOCAL_KEY);
-            print(data);
-            final loginRespone = LoginResponse.fromJson(jsonDecode(data));
-            emit(AuthbState.isSuccessSaveDataUser(loginRespone));
-          } catch (e) {
-            emit(AuthbState.isError(e.toString()));
-          }
-        },
-      );
-    });
+  FutureOr<void> userFunction(AuthbEvent event, Emitter<AuthbState> emit) {
+    // ignore: void_checks
+    return event.map(
+      started: (value) async* {},
+      signIn: (value) async {
+        emit(const AuthbState.isLoading());
+
+        final result =
+            await authRepository.signIn(loginRequest: value.requestData);
+
+        emit(result.fold(
+            (l) => AuthbState.isError(l), (r) => AuthbState.isSuccess(r)));
+        return null;
+      },
+      saveUserData: (value) async {
+        emit(const AuthbState.isLoading());
+        try {
+          await GetStorage().write(constants.USER_LOCAL_KEY,
+              jsonEncode(value.responseData.toJson()));
+          emit(AuthbState.isSuccessSaveDataUser(value.responseData));
+        } catch (e) {
+          emit(AuthbState.isError(e.toString()));
+        }
+        return null;
+      },
+      loadUserData: (value) async {
+        emit(const AuthbState.isLoading());
+        try {
+          final data = await GetStorage().read(constants.USER_LOCAL_KEY);
+          // ignore: avoid_print
+          print(data);
+          final loginRespone = LoginResponse.fromJson(jsonDecode(data));
+          emit(AuthbState.isSuccessSaveDataUser(loginRespone));
+        } catch (e) {
+          emit(AuthbState.isError(e.toString()));
+        }
+        return null;
+      },
+    );
   }
 }

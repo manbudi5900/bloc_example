@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'dart:math';
+part of '../presentation.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker/image_picker.dart';
-
+@RoutePage()
 class Home2ScreenPage extends StatefulWidget {
   const Home2ScreenPage({Key? key}) : super(key: key);
 
@@ -14,7 +9,7 @@ class Home2ScreenPage extends StatefulWidget {
 }
 
 class _Home2ScreenPageState extends State<Home2ScreenPage> {
-  late File image;
+  File? image;
   final picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
@@ -28,10 +23,29 @@ class _Home2ScreenPageState extends State<Home2ScreenPage> {
             height: 200,
             width: 200,
             color: Colors.grey,
+            child: (image == null)
+                ? const Icon(
+                    Icons.image,
+                    size: 60,
+                  )
+                : Image.file(
+                    image!,
+                    fit: BoxFit.cover,
+                  ),
           ),
           ElevatedButton(
-            onPressed: () {
-              picker.getImage(source: ImageSource.camera, imageQuality: 40);
+            onPressed: () async {
+              try {
+                final picked = await picker.pickImage(
+                    source: ImageSource.camera, imageQuality: 40);
+
+                setState(() {
+                  image = File(picked!.path);
+                });
+              } catch (e) {
+                // ignore: avoid_print
+                print(e.toString());
+              }
             },
             child: const Text("Get Image"),
           )

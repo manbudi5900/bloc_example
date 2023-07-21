@@ -17,7 +17,7 @@ class HeaderLogin extends StatelessWidget {
                 Color.fromARGB(33, 101, 58, 255),
                 Color.fromARGB(33, 101, 73, 255)
               ])),
-              child: Column()),
+              child: const Column()),
         ),
         ClipPath(
           clipper: WaveClipper3(),
@@ -29,7 +29,7 @@ class HeaderLogin extends StatelessWidget {
               Color.fromARGB(68, 143, 58, 255),
               Color.fromARGB(68, 188, 73, 254)
             ])),
-            child: Column(),
+            child: const Column(),
           ),
         ),
         ClipPath(
@@ -42,8 +42,8 @@ class HeaderLogin extends StatelessWidget {
               Color.fromARGB(255, 58, 61, 255),
               Color.fromARGB(255, 91, 73, 254)
             ])),
-            child: Column(
-              children: const <Widget>[
+            child: const Column(
+              children: <Widget>[
                 SizedBox(
                   height: 40,
                 ),

@@ -16,28 +16,22 @@ class ProfileRepository {
       String errorM = "Terjadi kesalahan";
       switch (e.type) {
         case DioExceptionType.connectionTimeout:
-          // TODO: Handle this case.
           break;
         case DioExceptionType.sendTimeout:
           break;
         case DioExceptionType.receiveTimeout:
-          // TODO: Handle this case.
           break;
         case DioExceptionType.badCertificate:
-          // TODO: Handle this case.
           break;
         case DioExceptionType.badResponse:
           errorM = e.response!.data['error'];
-          // TODO: Handle this case.
+
           break;
         case DioExceptionType.cancel:
-          // TODO: Handle this case.
           break;
         case DioExceptionType.connectionError:
-          // TODO: Handle this case.
           break;
         case DioExceptionType.unknown:
-          // TODO: Handle this case.
           break;
       }
       return left(errorM);

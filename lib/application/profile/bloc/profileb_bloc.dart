@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:belajar/domain/core/user/model/user_response.dart';
 import 'package:belajar/infrastructur/repository.dart';
 import 'package:bloc/bloc.dart';
@@ -10,22 +12,21 @@ part 'profileb_bloc.freezed.dart';
 class ProfilebBloc extends Bloc<ProfilebEvent, ProfilebState> {
   ProfileRepository profileRepository = ProfileRepository();
   ProfilebBloc() : super(const _Initial()) {
-    print("aassfd");
+    on<ProfilebEvent>(userFunctionList);
+  }
+
+  FutureOr<void> userFunctionList(
+      ProfilebEvent event, Emitter<ProfilebState> emit) {
     // ignore: void_checks
-    on<ProfilebEvent>((event, emit) async {
-      print("objectasaa");
+    return event.map(
+        started: (value) async* {},
+        getAllUserData: (value) async {
+          emit(const ProfilebState.isLoading());
+          final result = await profileRepository.getAllUser();
 
-      await event.map(
-          started: (value) async* {},
-          getAllUserData: (value) async {
-            print("object");
-            emit(const ProfilebState.isLoading());
-            // Get data from Api
-            final result = await profileRepository.getAllUser();
-
-            result.fold((l) => emit(ProfilebState.isError(l)),
-                (r) => emit(ProfilebState.isSuccess(r)));
-          });
-    });
+          result.fold((l) => emit(ProfilebState.isError(l)),
+              (r) => emit(ProfilebState.isSuccess(r)));
+          return null;
+        });
   }
 }

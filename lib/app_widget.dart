@@ -1,19 +1,19 @@
-import 'package:belajar/presentation/home2/home2_screen_page.dart';
-import 'package:belajar/presentation/presentation.dart';
+import 'package:belajar/route/router.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key}) : super(key: key);
+  AppWidget({Key? key}) : super(key: key);
+  final appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home2ScreenPage(),
+      routerConfig: appRouter.config(),
     );
   }
 }

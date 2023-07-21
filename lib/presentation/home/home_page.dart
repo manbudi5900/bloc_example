@@ -38,20 +38,14 @@ class _HomePageState extends State<HomePage> {
             ProfilebBloc()..add(const ProfilebEvent.getAllUserData()),
         child: BlocConsumer<ProfilebBloc, ProfilebState>(
           listener: (context, state) {
-            print("budilistener");
             state.maybeMap(
                 orElse: () {},
-                isLoading: (value) {
-                  print("Loading1..");
-                },
-                initial: (value) {
-                  print("Loading111..");
-                },
+                isLoading: (value) {},
+                initial: (value) {},
                 isSuccess: (value) {
-                  print("isSuccess..");
+                  // ignore: avoid_print
                   print(value.userResponse);
                 });
-            print(state);
           },
           builder: (context, state) {
             return state.maybeMap(
@@ -67,8 +61,8 @@ class _HomePageState extends State<HomePage> {
 
   Container homePageContent(List<Data1>? data) {
     return Container(
-      child: (data!.length < 1)
-          ? Center(
+      child: (data!.isEmpty)
+          ? const Center(
               child: Text("Data kosong"),
             )
           : ListView.builder(
@@ -100,7 +94,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Center homePageLoading() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(),
     );
   }

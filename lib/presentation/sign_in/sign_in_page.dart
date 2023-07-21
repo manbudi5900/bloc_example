@@ -21,24 +21,17 @@ class _SignInPageState extends State<SignInPage> {
           listener: (context, state) {
             state.maybeMap(
                 orElse: () {},
-                isLoading: (value) {
-                  print("Loading1..");
-                },
-                initial: (value) {
-                  print("Loading111..");
-                },
+                isLoading: (value) {},
+                initial: (value) {},
                 isSuccess: (value) {
-                  print(value);
                   context
                       .read<AuthbBloc>()
                       .add(AuthbEvent.saveUserData(value.userResponse));
                 },
                 isSuccessSaveDataUser: (value) {
-                  print("value");
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const HomePage()));
                 });
-            print(state);
           },
           builder: (context, state) {
             return ListView(
@@ -135,7 +128,6 @@ class _SignInPageState extends State<SignInPage> {
                                       fontSize: 18),
                                 ))),
                         onPressed: () {
-                          print("object");
                           final requestData = LoginRequest(
                               email: "eve.holt@reqres.in",
                               password: "cityslicka");
@@ -160,9 +152,9 @@ class _SignInPageState extends State<SignInPage> {
                 const SizedBox(
                   height: 40,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text(
                       "Don't have an Account ? ",
                       style: TextStyle(

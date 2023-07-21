@@ -2,6 +2,7 @@ import 'package:belajar/domain/auth/model/login_request.dart';
 import 'package:belajar/domain/auth/model/login_response.dart';
 import 'package:belajar/infrastructur/repository.dart';
 import 'package:bloc/bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
