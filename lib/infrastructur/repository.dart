@@ -4,7 +4,7 @@ import 'package:belajar/domain/auth/model/login_response.dart';
 import 'package:belajar/domain/core/user/model/user_response.dart';
 import 'package:belajar/domain/location/location_interface.dart';
 import 'package:belajar/domain/location/location_req.dart';
-import 'package:belajar/domain/location/province_data.dart';
+import 'package:belajar/domain/location/location_data.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
